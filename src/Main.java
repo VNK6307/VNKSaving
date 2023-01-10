@@ -25,15 +25,15 @@ public class Main {
 
 
         File filesSource = new File(folderPath);
-            for (File item : filesSource.listFiles()) {
-                if (item.getName().contains(".dat")) {
-                    if (item.delete()) {
-                        System.out.println("Файл удален");
-                    } else {
-                        System.out.println(item.getName() + " не удален");
-                    }
+        for (File item : filesSource.listFiles()) {
+            if (item.getName().contains(".dat")) {
+                if (item.delete()) {
+                    System.out.println("Файл удален");
+                } else {
+                    System.out.println(item.getName() + " не удален");
                 }
             }
+        }
     }
 
     public static void saveGame(String path, GameProgress player) {
@@ -45,11 +45,11 @@ public class Main {
         }
     }
 
-    public static void zipFiles(String archivePath, String folder) throws Exception{
-        FileOutputStream fout = new FileOutputStream(archivePath);
-        ZipOutputStream zout = new ZipOutputStream(fout);
+    public static void zipFiles(String archivePath, String folder) throws Exception {
         File fileSource = new File(folder);
         File[] files = fileSource.listFiles();
+        FileOutputStream fout = new FileOutputStream(archivePath);
+        ZipOutputStream zout = new ZipOutputStream(fout);
         for (int i = 0; i < files.length; i++) {
             try {
                 FileInputStream fis = new FileInputStream(files[i]);
@@ -64,6 +64,7 @@ public class Main {
             }
         }
         zout.close();
+        fout.close();
     }
 
 }
